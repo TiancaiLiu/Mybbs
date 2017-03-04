@@ -53,22 +53,22 @@ $count_all = num($link, $query);
 		 ?>
 		<li>
 			<div class="smallPic">
-					<img width="45" height="45" src="<?php if($data_content['photo']!=''){echo $data_content['photo'];}else{echo 'style/photo.jpg';}?>" />
+					<img width="45" height="45" src="<?php if($data_content['photo']!=''){echo SUB_URL.$data_content['photo'];}else{echo 'style/photo.jpg';}?>" />
 			</div>
 			<div class="subject">
 				<div class="titleWrap"><h2><a target="_blank" href="show.php?id=<?php echo $data_content['id']?>"><?php echo $data_content['title'] ?></a></h2></div>
 				<p>
-					<?php 
+					发帖日期：<?php echo $data_content['publish_time']?>&nbsp;&nbsp;&nbsp;&nbsp;最后回复：<?php echo $last_time?>
+				</p>
+				<?php 
 						if(check_user($member_id,$data_content['member_id'])){
 							$url=urlencode("content_delete.php?id={$data_content['id']}");
 							$return_url=urlencode($_SERVER['REQUEST_URI']);
 							$message="你真的要删除帖子 {$data_content['title']} 吗？";
 							$delete_url="confirm.php?url={$url}&return_url={$return_url}&message={$message}";
-							echo "<a href='content_update.php?id={$data_content['id']}'>编辑</a> <a href='{$delete_url}'>删除</a>";
+							echo "<a class='update' href='content_update.php?id={$data_content['id']}'>编辑</a> <a class='update' href='{$delete_url}'>删除</a>";
 						}
 					 ?>
-					发帖日期：<?php echo $data_content['publish_time']?>&nbsp;&nbsp;&nbsp;&nbsp;最后回复：<?php echo $last_time?>
-				</p>
 			</div>
 			<div class="count">
 				<p>
@@ -93,11 +93,15 @@ $count_all = num($link, $query);
 	<div class="member_big">
 		<dl>
 			<dt>
-				<img width="180" height="180" src="<?php if($data_content['photo']!=''){echo $data_content['photo'];}else{echo 'style/photo.jpg';}?>" />
+				<img width="180" height="180" src="<?php if($data_member['photo']!=''){echo SUB_URL.$data_member['photo'];}else{echo 'style/photo.jpg';}?>" />
 			</dt>
 			<dd class="name"><?php echo $data_member['name'] ?></dd>
 			<dd>帖子总计：<?php echo $count_all?></dd>
-			<!--<dd>操作：<a target="_blank" href="">修改头像</a> | <a target="_blank" href="">修改密码</a></dd>-->
+			<?php 
+				if($member_id==$data_member['id']){
+				?>
+				<dd>操作：<a target="_blank" href="member_photo_update.php">修改头像</a>  | <a target="_blank" href="">修改密码</a></dd> 
+				<?php }?>
 		</dl>
 		<div style="clear:both;"></div>
 	</div>
