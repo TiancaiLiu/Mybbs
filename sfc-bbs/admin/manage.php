@@ -5,18 +5,11 @@ include_once '../inc/tool.inc.php';
 $link = connect();
 //验证管理员是否登录
 include_once 'inc/is_manage_login.inc.php';
-
-
-	$template['keywords'] = '管理员界面';
-	$template['title'] = '管理员';
-	$template['description'] = '管理员';
-	$template['css'] = array('style/public.css');
-
-
-
-
+$template['keywords'] = '管理员界面';
+$template['title'] = '管理员';
+$template['description'] = '管理员';
+$template['css'] = array('style/public.css');
 ?>
-
 <?php include_once 'inc/header.inc.php' ?>
 <div id="main" style="height:1000px;">
 

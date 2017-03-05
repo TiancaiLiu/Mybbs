@@ -13,7 +13,6 @@ $member_id = is_login($link);
 //判断管理员是否登录
 $is_manage_login = is_manage_login($link);
 //判断会员id合法性
-
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 	skip('3', 'index.php', 'error', '会员id参数不合法！');
 }
