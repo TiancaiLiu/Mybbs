@@ -3,13 +3,17 @@
 	include_once '../inc/config.inc.php';
 	include_once '../inc/mysql.inc.php';
 	include_once '../inc/tool.inc.php';
+	$link = connect();
+	//验证管理员是否登录
+	include_once 'inc/is_manage_login.inc.php';
+
 
 	$template['keywords'] = '添加界面';
 	$template['title'] = '子板块添加页';
 	$template['description'] = '添加子板块操作';
 	$template['css'] = array('style/public.css');
 
-	$link = connect();
+	
 	//编码设置
 	$charset = "SET NAMES 'utf8';";
 	execute($link, $charset);

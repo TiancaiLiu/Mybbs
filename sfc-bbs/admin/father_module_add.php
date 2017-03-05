@@ -3,9 +3,12 @@
 	include_once '../inc/config.inc.php';
 	include_once '../inc/mysql.inc.php';
 	include_once '../inc/tool.inc.php';
+	$link = connect();
+	//验证管理员是否登录
+	include_once 'inc/is_manage_login.inc.php';
 	//表单提交验证
 	if(isset($_POST['submit'])){
-		$link = connect();
+		
 		//设置字符编码（不设置就是乱码，不知道为什么，哎！）
 		$charset = "SET NAMES 'utf8';";
 		execute($link, $charset);		
@@ -16,9 +19,9 @@
 		$query = "INSERT INTO `sfc_father_module`(module_name,sort) VALUES ('{$_POST['module_name']}', '{$_POST['sort']}')";
 		execute($link, $query);
 		if(mysqli_affected_rows($link)==1) {
-			skip(2, 'father_module.php', 'ok', '恭喜你，添加成功！'); 
+			skip('2', 'father_module.php', 'ok', '恭喜你，添加成功！'); 
 		}else{
-			skip(3, 'father_module_add.php', 'error', '对不起，您的操作有误，请重试！'); 
+			skip('3', 'father_module_add.php', 'error', '对不起，您的操作有误，请重试！'); 
 		}
 	}
 	//界面设置

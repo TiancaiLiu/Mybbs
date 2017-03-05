@@ -3,13 +3,16 @@
 	include_once '../inc/config.inc.php';
 	include_once '../inc/mysql.inc.php';
 	include_once '../inc/tool.inc.php';
+	$link = connect();
+	//验证管理员是否登录
+	include_once 'inc/is_manage_login.inc.php';
 
 	$template['keywords'] = '修改界面';
 	$template['title'] = '子板块修改页';
 	$template['description'] = '修改子板块操作';
 	$template['css'] = array('style/public.css');
 
-	$link = connect();
+	
 	//判断是否有id传递或者id是否是数字
 	if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 		skip(3, 'father_module.php', 'error', 'id参数错误！');
