@@ -8,27 +8,36 @@ $template['description'] = '帖子修改页';
 $template['keywords'] = '修改';
 $template['css'] = array('style/public.css','style/publish.css');
 $link=connect();
-if(!$member_id=is_login($link)){
-	skip('login.php', 'error', '请没有登录!');
+//判断管理员是否登录
+$is_manage_login = is_manage_login($link);
+//前台用户登录
+$member_id=is_login($link);
+if(!$member_id && !$is_manage_login){
+	skip('3', 'login.php', 'error', '您没有登录!');
 }
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])){
-	skip('index.php', 'error', '帖子id参数不合法!');
+	skip('3', 'index.php', 'error', '帖子id参数不合法!');
 }
 $query = "SELECT * FROM `sfc_content` WHERE id={$_GET['id']}";
 $result_content = execute($link, $query);
 if(mysqli_num_rows($result_content)==1) {
 	$data_content = mysqli_fetch_assoc($result_content);
 	$data_content['title']=htmlspecialchars($data_content['title']);
-	if (check_user($member_id,$data_content['member_id'])) {
+	if (check_user($member_id, $data_content['member_id'], $is_manage_login)) {
 		if(isset($_POST['submit'])) {
 			include 'inc/check_publish.inc.php';
 			$_POST=escape($link, $_POST);
 			$query="UPDATE `sfc_content` SET module_id={$_POST['module_id']},title='{$_POST['title']}',content='{$_POST['content']}' WHERE id={$_GET['id']}";
 			execute($link, $query);
-			if(mysqli_affected_rows($link)==1) {
-				skip('2',"member.php?id={$member_id}", 'ok', '修改成功！');
+			if(isset($_GET['return_url'])) {
+				$return_url = $_GET['return_url'];
 			}else{
-				skip('3',"member.php?id={$member_id}", 'error', '对不起，修改失败！');
+				$return_url = "member.php?id={$member_id}";
+			}
+			if(mysqli_affected_rows($link)==1) {
+				skip('2',$return_url, 'ok', '修改成功！');
+			}else{
+				skip('3',$return_url, 'error', '对不起，修改失败！');
 			}
 		}
 	}else{

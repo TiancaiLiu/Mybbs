@@ -26,7 +26,7 @@ A;
 echo $html;
 exit();
 }
-//判断是否登录
+//验证前台用户是否登录
 function is_login($link) {
 	if(isset($_COOKIE['sfc']['name']) && isset($_COOKIE['sfc']['pw'])) {
 		$query = "SELECT * FROM `sfc_member` WHERE name='{$_COOKIE['sfc']['name']}' and sha1(pw)='{$_COOKIE['sfc']['pw']}'";
@@ -43,9 +43,24 @@ function is_login($link) {
 }
 
 //判断当前登录用户是否有编辑或删除帖子的功能
-function check_user($member_id, $content_member_id) {
-	if($member_id == $content_member_id) {
+function check_user($member_id, $content_member_id,$is_manage_login) {
+	if($member_id == $content_member_id || $is_manage_login) {
 		return true;
+	}else{
+		return false;
+	}
+}
+//验证后台管理员登录
+function is_manage_login($link) {
+	if(isset($_SESSION['manage']['name']) && isset($_SESSION['manage']['pw'])) {
+		$query = "SELECT * FROM `sfc_manage` WHERE name='{$_SESSION['manage']['name']}' and sha1(pw)='{$_SESSION['manage']['pw']}'";
+		$result = execute($link, $query);
+		if(mysqli_num_rows($result) == 1) {
+			$data = mysqli_fetch_assoc($result);
+			return true;
+		}else{
+			return false;
+		}
 	}else{
 		return false;
 	}

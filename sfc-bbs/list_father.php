@@ -9,6 +9,8 @@ $charset = "SET NAMES 'utf8';";
 execute($link, $charset);
 //判断用户是否登录
 $member_id=is_login($link);
+//判断管理员是否登录
+$is_manage_login = is_manage_login($link);
 //判断id参数是否合法
 if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 	skip(3, 'index.php', 'error', '父板块id参数不合法！'); 
@@ -44,7 +46,7 @@ $count_today = num($link, $query);
 $template['title'] = '父板块列表页';
 $template['description'] = '显示所有父板块内容';
 $template['keywords'] = '父板块列表';
-$template['css'] = array('style/public.css','style/list.css');
+$template['css'] = array('style/public.css','style/list.css','style/member.css');
 ?>
 <?php include_once 'inc/header.inc.php' ?>
 <div id="position" class="auto">
@@ -99,6 +101,15 @@ $template['css'] = array('style/public.css','style/list.css');
 					<p>
 						楼主：<?php echo $data_content['name']?>&nbsp;<?php echo $data_content['publish_time']?>&nbsp;&nbsp;&nbsp;&nbsp;最后回复：<?php echo $last_time?>
 					</p>
+					<?php 
+						if(check_user($member_id, $data_content['member_id'],$is_manage_login)){
+							$return_url=urlencode($_SERVER['REQUEST_URI']);
+							$url=urlencode("content_delete.php?id={$data_content['id']}&return_url={$return_url}");
+							$message="你真的要删除帖子 {$data_content['title']} 吗？";
+							$delete_url="confirm.php?url={$url}&return_url={$return_url}&message={$message}";
+							echo "<a class='update' href='content_update.php?id={$data_content['id']}&return_url={$return_url}'>编辑</a> <a class='update' href='{$delete_url}'>删除</a>";
+					}
+				?>
 				</div>
 				<div class="count">
 					<p>
