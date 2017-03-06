@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
-<title></title>
+<title>修改头像</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <style type="text/css">

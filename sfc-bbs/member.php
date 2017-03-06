@@ -102,7 +102,7 @@ $count_all = num($link, $query);
 			<?php 
 				if($member_id==$data_member['id']){
 				?>
-				<dd>操作：<a target="_blank" href="member_photo_update.php">修改头像</a>  | <a target="_blank" href="">修改密码</a></dd> 
+				<dd>操作：<a target="_blank" href="member_photo_update.php">修改头像</a>  | <a target="_blank" href="member_pw_update.php">修改密码</a></dd> 
 				<?php }?>
 		</dl>
 		<div style="clear:both;"></div>

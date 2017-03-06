@@ -7,7 +7,7 @@ $link = connect();
 include_once 'inc/is_manage_login.inc.php';
 
 $template['keywords'] = '会员界面';
-$template['title'] = '会员';
+$template['title'] = '用户列表';
 $template['description'] = '会员';
 $template['css'] = array('style/public.css');
 ?>
