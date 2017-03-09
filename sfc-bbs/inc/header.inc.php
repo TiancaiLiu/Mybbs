@@ -25,9 +25,9 @@ foreach ($template['css'] as $val) {
 				<a <?php if(basename($_SERVER['SCRIPT_NAME'])=='publish.php'){echo 'class="hover"';}?> href="publish.php">发帖</a>
 			</div>
 			<div class="serarch">
-				<form>
-					<input class="keyword" type="text" name="keyword" placeholder="搜索其实很简单" />
-					<input class="submit" type="submit" name="submit" value="" />
+				<form action="search.php" method="get">
+					<input class="keyword" type="text" name="keyword" value="<?php if(isset($_GET['keyword']))echo $_GET['keyword']?>" placeholder="搜索其实很简单" />
+					<input class="submit" type="submit" value="" />
 				</form>
 			</div>
 			<div class="login">

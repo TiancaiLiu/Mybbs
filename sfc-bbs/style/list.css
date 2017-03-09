@@ -10,6 +10,7 @@
 #main #right {
 	width:282px;
 	float:right;
+	padding: 0 0 10px 0;
 }
 #main #left .box_wrap {
 	color:#666;
@@ -31,7 +32,7 @@
 	margin:12px 0 0 0;
 }
 #main ul.postsList {
-	margin:10px 0 0 0;
+	margin:10px 0 10px 0;
 	border-top:1px dashed #ddd;
 }
 #main ul.postsList li {

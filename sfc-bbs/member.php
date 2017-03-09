@@ -98,12 +98,38 @@ $count_all = num($link, $query);
 				<img width="180" height="180" src="<?php if($data_member['photo']!=''){echo SUB_URL.$data_member['photo'];}else{echo 'style/photo.jpg';}?>" />
 			</dt>
 			<dd class="name"><?php echo $data_member['name'] ?></dd>
-			<dd>帖子总计：<?php echo $count_all?></dd>
+			<dd style="color:pink;">帖子(<?php echo $count_all?>)　关注(6)　粉丝(25)</dd>
+			<hr />
 			<?php 
 				if($member_id==$data_member['id']){
 				?>
-				<dd>操作：<a target="_blank" href="member_photo_update.php">修改头像</a>  | <a target="_blank" href="member_pw_update.php">修改密码</a></dd> 
-				<?php }?>
+				<dd>操　　作：<a target="_blank" href="member_photo_update.php">修改头像</a>  | <a target="_blank" href="member_pw_update.php">修改密码</a></dd> 
+				<hr />
+			<?php }?>			
+			<dd>星　　座:
+				<?php 
+					if($data_member['constellation']!=''){
+						echo $data_member['constellation'];
+					}else{
+						echo '该用户未填写！';
+					}
+				?> 
+			</dd>
+			<hr />
+			<dd>个性签名:
+				<?php 
+					if($data_member['words']!=''){
+						echo $data_member['words'];
+					}else{
+						echo '这个人很懒，什么都没留下！';
+					}
+				?>
+			</dd>
+			<hr />
+			<?php
+			if($member_id == $data_member['id']){?>
+				<a style="color:pink;" target="_blank" href="information_change.php">->>编辑个人资料<<-</a>
+			<?php }?>
 		</dl>
 		<div style="clear:both;"></div>
 	</div>

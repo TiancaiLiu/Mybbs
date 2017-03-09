@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
 		$query="UPDATE `sfc_member` set photo='{$upload['save_path']}' where id={$member_id}";
 		execute($link, $query);
 		if(mysqli_affected_rows($link)==1){
-			skip('3', "member.php?id={$member_id}",'ok','头像设置成功！');
+			skip('3', 'member.php?id={$member_id}','ok','头像设置成功！');
 		}else{
 			skip('3', 'member_photo_update.php','error','头像设置失败，请重试');
 		}
@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
 		skip('3', 'member_photo_update.php', 'error',$upload['error']);
 	}
 }
-//SUB_URL.
+//SUB_URL
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">

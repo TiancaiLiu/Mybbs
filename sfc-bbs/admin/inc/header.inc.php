@@ -17,8 +17,8 @@ foreach ($template['css'] as $val) {
 			MyBBS管理中心
 		</div> 
 		<ul class="nav">
-			<li><a href="http://www.sifangku.com" target="_blank">私房菜</a></li>
-			<li><a href="http://www.sifangku.com" target="_blank">私房菜</a></li>
+			<li><a href="" target="_blank">私房菜</a></li>
+			<li><a href="" target="_blank">私房菜</a></li>
 		</ul>
 		<div class="login_info">
 			<a href="../index.php" style="color:#fff;" target="_blank">网站首页</a>&nbsp;|&nbsp;
