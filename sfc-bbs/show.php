@@ -38,7 +38,7 @@ $data_father = mysqli_fetch_assoc($result_father);
 $query = "SELECT COUNT(*) FROM `sfc_reply` WHERE content_id={$_GET['id']}";
 $count_reply = execute($link, $query);
 
-$template['title'] = '帖子详细页';
+$template['title'] = $data_content['title'];
 $template['description'] = '显示所有帖子详细';
 $template['keywords'] = '帖子详细页';
 $template['css'] = array('style/public.css','style/show.css');

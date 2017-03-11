@@ -43,7 +43,7 @@ $count_today = num($link, $query);
  
 
 
-$template['title'] = '父板块列表页';
+$template['title'] = $data_father['module_name'];
 $template['description'] = '显示所有父板块内容';
 $template['keywords'] = '父板块列表';
 $template['css'] = array('style/public.css','style/list.css','style/member.css');

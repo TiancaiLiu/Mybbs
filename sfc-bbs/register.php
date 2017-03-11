@@ -17,7 +17,7 @@ if($member_id = is_login($link)) {
 
 if (isset($_POST['submit'])) {
 	include_once 'inc/check_register.inc.php';
-	$query = "INSERT INTO `sfc_member`(name, pw, register_time) VALUES ('{$_POST['name']}', md5('{$_POST['pw']}'), now())";
+	$query = "INSERT INTO `sfc_member`(name, pw, register_time, photo,last_time) VALUES ('{$_POST['name']}', md5('{$_POST['pw']}'), now(), '', now())";
 	execute($link, $query);
 	if (mysqli_affected_rows($link)==1) {
 		setcookie('sfc[name]', $_POST['name']);

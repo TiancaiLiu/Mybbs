@@ -24,6 +24,9 @@ if (isset($_POST['submit'])) {
 	if(mysqli_num_rows($result)==1) {
 		setcookie('sfc[name]', $_POST['name'], time()+$_POST['time']);
 		setcookie('sfc[pw]', sha1(md5($_POST['pw'])),  time()+$_POST['time']);
+		//更新登录时间
+		$query = "UPDATE `sfc_member` set last_time=now()";
+		execute($link, $query);
 		skip(3, 'index.php', 'ok', '登录成功！'); 
 	}else{
 		skip(3, 'register.php', 'error', '用户名或者密码错误！');

@@ -35,7 +35,7 @@ $count_today = num($link, $query);
 $query="select * from sfc_member where id={$data_son['member_id']}";
 $result_member=execute($link, $query);
 
-$template['title'] = '子板块列表页';
+$template['title'] = $data_son['module_name'];
 $template['description'] = '显示所有子板块内容';
 $template['keywords'] = '子板块列表';
 $template['css'] = array('style/public.css','style/list.css','style/member.css');

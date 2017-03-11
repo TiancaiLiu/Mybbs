@@ -17,15 +17,13 @@ $template['css'] = array('style/public.css','style/index.css');
 ?>
 
 <?php include_once 'inc/header.inc.php' ?>
-<div id="hot" class="auto">
+<!-- <div id="hot" class="auto">
 	<div class="title">热门动态</div>
 	<ul class="newlist">
-		<!-- 20条 -->
-		<li><a href="#">[菜鸟]</a> <a href="#">我是你爸爸...</a></li>
-		
+		<li><a href="#">[菜鸟]</a> <a href="#">我是你爸爸...</a></li>	
 	</ul>
 	<div style="clear:both;"></div>
-</div>
+</div> -->
 <?php 
 $query="SELECT * FROM `sfc_father_module` ORDER BY sort DESC";
 $result_father=execute($link, $query);
